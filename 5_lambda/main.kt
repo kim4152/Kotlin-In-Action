@@ -1,5 +1,7 @@
 package `5_lambda`
 
+import java.text.DecimalFormat
+
 data class Person(val name: String, val age: Int)
 
 val people = mutableListOf(Person("Alice", 3))
@@ -91,6 +93,49 @@ fun e() {
     }.toString()
 }
 
+
+/*
+일반 컬렉션 사용 vs 시퀀스 사용
+ */
+fun measureMemoryUsage(block: () -> Unit): Long {
+    val runtime = Runtime.getRuntime()
+    val beforeUsedMem = runtime.totalMemory() - runtime.freeMemory()
+    block()
+    val afterUsedMem = runtime.totalMemory() - runtime.freeMemory()
+    return afterUsedMem - beforeUsedMem
+}
+
+val decimalFormat = DecimalFormat("#,###")
+
+fun f() {
+    val startTime = System.currentTimeMillis()
+    val memoryUsed = measureMemoryUsage {
+        (1..1_000)
+            .filter { it % 3 == 0 }
+            .map { it * 2 }
+            .toList()
+    }
+    val endTime = System.currentTimeMillis()
+
+    println("일반 컬렉션 처리 시간: ${endTime - startTime} ms")
+    println("일반 컬렉션 메모리 사용량: ${decimalFormat.format(memoryUsed)} bytes")
+}
+
+fun g() {
+    val startTime = System.currentTimeMillis()
+    val memoryUsed = measureMemoryUsage {
+        (1..1_000).asSequence()
+            .filter { it % 3 == 0 }
+            .map { it * 2 }
+            .toList()
+    }
+    val endTime = System.currentTimeMillis()
+
+    println("시퀀스 처리 시간: ${endTime - startTime} ms")
+    println("시퀀스 메모리 사용량: ${decimalFormat.format(memoryUsed)} bytes")
+}
+
 fun main() {
-    e()
+    f()
+    //g()
 }
