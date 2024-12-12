@@ -42,7 +42,7 @@ val endTime = System.currentTimeMillis()
 일반 컬렉션 처리 시간 : 3 ms
         일반 컬렉션 메모리 사용량 : 424,560 bytes
         시퀀스 처리 시간: 7 ms
-        시퀀스 메모리 사용량: 845,728 bytes
+        시퀀스 메모리 사용량: 845,728 bytes  
 ```
 
 ### 2. 원소 개수가 많을 때 (1 ~ 100,000,000)
@@ -70,10 +70,8 @@ val endTime = System.currentTimeMillis()
 일반 컬렉션 처리 시간 : 1166 ms
         일반 컬렉션 메모리 사용량 : 1,967,128,576 bytes
         시퀀스 처리 시간: 1013 ms
-        시퀀스 메모리 사용량: 1,218,447,360 bytes
+        시퀀스 메모리 사용량: 1,218,447,360 bytes  
 ```
-
-</details>
 
 결론
 
@@ -82,3 +80,5 @@ val endTime = System.currentTimeMillis()
 
 지금은 각 원소마다 간단한 산술연산만 해주고 있지만, 복잡한 로직이 들어가면 더 유의미한 값이 출력될 것 같다.  
 ```
+
+</details>
