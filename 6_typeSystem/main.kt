@@ -1,3 +1,5 @@
+package `6_typeSystem`
+
 /*
 Nothing 타입 :  어떠한 값도 포함하지 않는 타입
 
