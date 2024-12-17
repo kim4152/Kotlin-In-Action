@@ -23,9 +23,9 @@ fun a(): Unit {
     return Unit // 생략
 }
 
-fun b(): Nothing {
-    return Nothing  // 오류
-}
+//fun b(): Nothing {
+//    return Nothing  // 오류
+//}
 
 /*
 읽기 전용 컬렉션이 항상 스레드 안전하지는 않다.

@@ -2,8 +2,9 @@ package `7_operatorOverloading`
 
 import kotlin.reflect.KProperty
 
-/*
+/*b
 위임 프로퍼티
+https://medium.com/@l2hyunwoo/by%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-delegate-456397c08a59
 
 위임 : 객체가 직접 작업을 수행하지 않고 다른 도우미 객체가 그 작업을 처리하게 맡기는 디자인 패턴. ( 이때 작업을 처리하는 도우미 객체를 위임 객체라고 부른다)
  */
@@ -24,12 +25,12 @@ class Person() {
     var email: String? = null
         get() {
             if (email == null) {
-                email = getEmail()
+                email = getEmaill()
             }
             return email
         }
 
-    fun getEmail(): String = ""
+    fun getEmaill(): String = ""
 
     val name by lazy { "" }
 
