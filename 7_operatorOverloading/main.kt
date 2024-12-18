@@ -2,7 +2,7 @@ package `7_operatorOverloading`
 
 import kotlin.reflect.KProperty
 
-/*b
+/*
 위임 프로퍼티
 https://medium.com/@l2hyunwoo/by%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-delegate-456397c08a59
 
