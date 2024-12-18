@@ -38,9 +38,9 @@ inline 한계
  */
 // 파라미터로 받은 람다를 다른 변수에 저장하고 나중에 그 변수를 사용한다면 람다를 표현하는 객체가 어딘가에는 존재해야 하기 때문에 람다를 인라이닝할 수 없다
 inline fun b(block: () -> Unit) {
-    val storedBlock = block  // 람다를 변수에 저장
+    //val storedBlock = block  // 람다를 변수에 저장
     println("람다를 변수에 저장했습니다.")
-    storedBlock()            // 나중에 람다 실행
+    //storedBlock()            // 나중에 람다 실행
 }
 
 /*
