@@ -1,6 +1,6 @@
 # 5장: 람다
 
-### 함수나 프로퍼티를 반혼하는 역할을 수행하는 람다는 멤버 참조로 대치할 수 있다
+### 함수나 프로퍼티를 반환하는 역할을 수행하는 람다는 멤버 참조로 대치할 수 있다
 
 ```kotlin
 data class Person(val name: String, val age: Int)
@@ -34,7 +34,7 @@ val predicate = Person::isAudlut
 ### count 와 size
 
 size : 중간 컬렉션이 생김  
-count : 조건을 만ㄴ족하는 원소의 개수만 추적
+count : 조건을 만족하는 원소의 개수만 추적
 
 ```kotlin
 val numbers = listOf(1, 2, 3, 4, 5)

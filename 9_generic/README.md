@@ -1,4 +1,4 @@
-# 8장: 제네릭스
+# 9장: 제네릭스
 
 <br>
 
@@ -73,11 +73,11 @@ inline fun <reified T> isB(value: Any) = value is T
 
 ## 변성
 
-List<String.와 List<Any> 와 같이 기저 타입(List)이 같고 타입 인자가 다른 여러 타입이 서로 어떤 관계가 있는지 설명하는 개념
+`List<String>`와 `List<Any>` 와 같이 기저 타입(List)이 같고 타입 인자가 다른 여러 타입이 서로 어떤 관계가 있는지 설명하는 개념
 
 - 변성이 있는 이유  
-  List<Any> 타입의 파라미터를 받는 함수에 List<String>을 넘기면 안전하지 않다.  
-  하지만 원소 추가나 변경이 없는 경우에는 List<String>을 List<Any> 대신 넘겨도 안전하다.
+  `List<Any>` 타입의 파라미터를 받는 함수에 `List<String>`을 넘기면 안전하지 않다.  
+  하지만 원소 추가나 변경이 없는 경우에는 `List<String>`을 `List<Any>` 대신 넘겨도 안전하다.
 
 ## 공변적
 
@@ -92,10 +92,10 @@ interface producer<out T> { // out 선언 : 클래스가 T에 대해 공변적�
 
 ## 반공변성
 
-타입 A가 타입 B의 상위 타입일 때 `producer<B>`가 `producer<A>`의 상위타입이 된다.
+타입 A가 타입 B의 상위 타입일 때 `base<B>`가 `base<A>`의 상위타입이 된다.
 
 ```kotlin
-// InA는 InB의 상위 타입. InA를 받을 수 있는 메서드는 InB도 받을 수 있어야함
+// InA는 InB의 상위 타입. InA를 받을 수 있는 메서드는 InB도 받을 수 있어야함 (공변성)
 open class InA
 class InB : InA()
 
@@ -115,7 +115,8 @@ fun main() {
     }
     makeBase(baseInA)
     makeBase(baseInB) // 컴파일 오류
-    /* InA는 InB의 상위 타입이어서 base<InA>를 받을 수 있는 메서드는 base<InB>도 받을 수 있어야 하지만
+    /* 
+    InA는 InB의 상위 타입이어서 base<InA>를 받을 수 있는 메서드는 base<InB>도 받을 수 있어야 하지만
     base<InB>가 base<InA>의 상위 타입이 되었기 때문에(반공변성) 오류가 난다
     */
 }

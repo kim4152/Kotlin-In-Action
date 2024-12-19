@@ -66,7 +66,7 @@ val list2 = listOf(1, 2, 3)
 /*
 2. 함수를 inline으로 만들면 타입 인자가 지워지지 않게 할 수 있다. -> 실체화(refly)
  */
-fun <T> isA(value: Any) = value is T  // 런타임에 T가 어떤 타입인지 알 수 없음
+//fun <T> isA(value: Any) = value is T  // 런타임에 T가 어떤 타입인지 알 수 없음
 inline fun <reified T> isB(value: Any) = value is T
 
 
@@ -84,7 +84,7 @@ List<Any> 타입의 파라미터를 받는 함수에 Lis<String>을 넘기면 �
 공변적 : A가 B의 하위 타입이면 List<A>는 List<B>의 하위타입이다. 그런 클래스나 인터페이스를 공변적이라고 말한다.
  */
 interface producer<out T> { // out 선언 : 클래스가 T에 대해 공변적이라고 선언. producer가 T의 하위클래스
-    fun produce(t: T): T // T를 아웃 위치(두 번째 위치. 즉 리턴값)에서만 사용할 수 있다.
+    //fun produce(t: T): T // T를 아웃 위치(두 번째 위치. 즉 리턴값)에서만 사용할 수 있다.
 }
 
 
@@ -111,7 +111,7 @@ fun main() {
         override fun base(item: InB) {}
     }
     makeBase(baseInA)
-    makeBase(baseInB) // 컴파일 오류
+    //makeBase(baseInB) // 컴파일 오류
     /* InA는 InB의 상위 타입이어서 base<InA>를 받을 수 있는 메서드는 base<InB>도 받을 수 있어야 하지만
     base<InB>가 base<InA>의 상위 타입이 되었기 때문에(반공변성) 오류가 난다
      */
