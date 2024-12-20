@@ -24,7 +24,7 @@ DSL과 일반 API의 경계는 없다.(주관적임)
  */
 
 
-fun myBuildString(
+fun myBuildString1(
     builderAction: (StringBuilder) -> Unit
 ): String {
     val sb = StringBuilder()
@@ -32,7 +32,64 @@ fun myBuildString(
     return sb.toString()
 }
 
-val s = myBuildString {
+// 매번 it을 사용해 StringBuilder 인스턴스를 참조해야함
+val s1 = myBuildString1 {
     it.append("Hello ")
     it.append("World")
+}
+
+fun myBuildString2(
+    builderAction: StringBuilder.() -> Unit  // 수신 객체 지정 람다. 람다인자 중 하나에게 수신 객체라는 상태를 부여하면 이름과 마침표를 명시하지 않아도 그 인자의 멤버를 바로 사용할 수 있다.
+): String {
+    val sb = StringBuilder()
+    sb.builderAction()
+    return sb.toString()
+}
+
+val s2 = myBuildString2 {
+    append("Hello ")    // this 키워드 생략
+    append("World")
+}
+
+fun myBuildString3(builderAction: StringBuilder.() -> Unit): String = StringBuilder().apply(builderAction).toString()
+
+
+/*
+invoke 관례
+함수처럼 호출할 수 있는 객체
+
+관례 : 특혈한 이름이 붙은 함수를 일반 메서드 호출 구문으로 호출하지 않고 더 간단한 다라ㅡㄴ 구문으로 호출할 수 있게 지원하는 기능
+ */
+
+//invoke 동작 예제1
+class Greeter(val greeting: String) {
+    operator fun invoke(name: String) {
+        println("$greeting, $name")
+    }
+}
+
+val bavarianGreeter = Greeter("Servus")
+fun a() {
+    bavarianGreeter("Dmitry") // Greeter 인스턴스를 함수처럼 호출한다. 내부적으로 bavarianGreeter.invoke("Dmitry") 로 컴파일
+    // 결과 : Servus, Dmitry
+}
+
+// 동작 예제2
+class DependencyHandler {
+    fun compile(coordinate: String) = println("add dependency - $coordinate")
+
+    operator fun invoke(body: DependencyHandler.() -> Unit) {
+        body()
+    }
+}
+
+fun main() {
+    val dependencies = DependencyHandler()
+    dependencies.compile("aaa")
+
+    dependencies.invoke({ this.compile("ccc") })
+    // 위 코드와 아래 코드는 같다.
+    dependencies {
+        compile("bbb")
+    }
 }
